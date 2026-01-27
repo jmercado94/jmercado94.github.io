@@ -2,248 +2,435 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Joshua Mercado — Portfolio</title>
   <meta name="description" content="Joshua Mercado's software development portfolio." />
 
+  <!-- Modern font (free) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
-    :root {
-      --bg: #0b0d12;
-      --card: #111522;
-      --text: #e8ecf3;
-      --muted: #aab3c5;
-      --line: rgba(255,255,255,.12);
-      --accent: #7aa2ff;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    :root{
+      --bg: #070A12;
+      --bg2:#0B1020;
+      --card: rgba(255,255,255,.04);
+      --card2: rgba(255,255,255,.06);
+      --line: rgba(255,255,255,.10);
+      --text:#EEF2FF;
+      --muted:#A7B0C5;
+      --accent:#7AA2FF;
+      --accent2:#8B5CF6;
+      --good:#34D399;
+      --shadow: 0 18px 50px rgba(0,0,0,.55);
+      --radius: 18px;
     }
 
     * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: radial-gradient(1200px 600px at 20% 10%, rgba(122,162,255,.18), transparent 55%),
-                  radial-gradient(1200px 600px at 90% 0%, rgba(120,255,214,.10), transparent 55%),
-                  var(--bg);
+    html { scroll-behavior: smooth; }
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color: var(--text);
+      background:
+        radial-gradient(900px 520px at 12% 8%, rgba(122,162,255,.22), transparent 60%),
+        radial-gradient(820px 480px at 88% 12%, rgba(139,92,246,.18), transparent 62%),
+        radial-gradient(900px 520px at 40% 110%, rgba(52,211,153,.10), transparent 58%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
       line-height: 1.55;
     }
 
-    a { color: var(--accent); text-decoration: none; }
+    a { color: var(--text); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
-    .wrap { max-width: 980px; margin: 0 auto; padding: 28px 18px 70px; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 28px 18px 78px; }
 
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    /* Sticky nav */
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+      background: rgba(7,10,18,.55);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .topbar-inner{
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 14px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
       gap: 14px;
-      padding: 18px 0 10px;
     }
 
-    .brand {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+      min-width: 180px;
     }
-
-    .brand h1 {
-      margin: 0;
-      font-size: 26px;
-      letter-spacing: .2px;
-    }
-
-    .brand p { margin: 0; color: var(--muted); font-size: 14px; }
-
-    nav {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      font-size: 14px;
-    }
-
-    .hero {
-      margin-top: 24px;
-      padding: 26px;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      box-shadow: var(--shadow);
-    }
-
-    .hero h2 {
-      margin: 0 0 10px;
-      font-size: 34px;
-      line-height: 1.15;
-      letter-spacing: .2px;
-    }
-
-    .hero p {
-      margin: 0 0 18px;
-      color: var(--muted);
-      max-width: 70ch;
+    .brand .name{
+      margin:0;
       font-size: 16px;
+      letter-spacing: .2px;
+      font-weight: 700;
+    }
+    .brand .sub{
+      margin:0;
+      color: var(--muted);
+      font-size: 12px;
     }
 
-    .cta {
-      display: flex;
-      gap: 10px;
+    nav{
+      display:flex;
+      gap: 14px;
       flex-wrap: wrap;
-      margin-top: 8px;
+      justify-content:flex-end;
+      font-size: 13px;
+      color: var(--muted);
     }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      border-radius: 12px;
-      padding: 10px 14px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.04);
+    nav a{
+      color: var(--muted);
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+    }
+    nav a:hover{
       color: var(--text);
-      font-size: 14px;
+      background: rgba(255,255,255,.04);
+      border-color: rgba(255,255,255,.08);
       text-decoration: none;
     }
-    .btn:hover { background: rgba(255,255,255,.07); text-decoration: none; }
 
-    .btn.primary {
-      border-color: rgba(122,162,255,.45);
-      background: rgba(122,162,255,.12);
+    /* Hero */
+    .hero{
+      margin-top: 26px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position: relative;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: radial-gradient(500px 220px at 20% 10%, rgba(122,162,255,.22), transparent 60%),
+                  radial-gradient(420px 220px at 80% 0%, rgba(139,92,246,.18), transparent 60%);
+      opacity:.85;
+      pointer-events:none;
+      filter: blur(6px);
+    }
+    .hero-inner{
+      position: relative;
+      padding: 34px 28px;
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+    }
+    @media (max-width: 920px){
+      .hero-inner{ grid-template-columns: 1fr; }
     }
 
-    section { margin-top: 34px; }
-    section h3 {
-      margin: 0 0 12px;
-      font-size: 18px;
+    .headline{
+      margin:0 0 10px;
+      font-size: 40px;
+      line-height:1.1;
+      letter-spacing: -.4px;
+    }
+    .lead{
+      margin:0 0 18px;
+      color: var(--muted);
+      max-width: 70ch;
+      font-size: 15px;
+    }
+
+    .pill-row{
+      display:flex;
+      gap:10px;
+      flex-wrap: wrap;
+      margin: 10px 0 18px;
+    }
+    .pill{
+      font-size: 12px;
+      color: var(--muted);
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.15);
+    }
+    .pill.good{
+      color: rgba(52,211,153,.95);
+      border-color: rgba(52,211,153,.22);
+      background: rgba(52,211,153,.08);
+    }
+
+    .cta{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      font-size: 13px;
+      text-decoration:none;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.18);
+      text-decoration:none;
+    }
+    .btn.primary{
+      border-color: rgba(122,162,255,.45);
+      background: rgba(122,162,255,.14);
+    }
+    .btn.primary:hover{
+      background: rgba(122,162,255,.18);
+      border-color: rgba(122,162,255,.62);
+    }
+
+    .hero-side{
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.12);
+      border-radius: 16px;
+      padding: 14px;
+      height: fit-content;
+    }
+    .hero-side h3{
+      margin: 0 0 10px;
+      font-size: 14px;
       letter-spacing: .2px;
     }
+    .hero-side ul{
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .hero-side li{ margin: 7px 0; }
 
-    .grid {
-      display: grid;
+    /* Sections */
+    section{ margin-top: 34px; }
+    .section-title{
+      display:flex;
+      align-items:flex-end;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .section-title h2{
+      margin: 0;
+      font-size: 16px;
+      letter-spacing: .2px;
+    }
+    .section-title p{
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .grid{
+      display:grid;
       grid-template-columns: repeat(12, 1fr);
       gap: 14px;
     }
-
-    .card {
+    .card{
       grid-column: span 6;
-      border: 1px solid var(--line);
-      border-radius: 18px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
       padding: 16px;
+      transition: transform .16s ease, background .16s ease, border-color .16s ease;
     }
-    @media (max-width: 860px) { .card { grid-column: span 12; } }
+    .card:hover{
+      transform: translateY(-2px);
+      background: rgba(255,255,255,.045);
+      border-color: rgba(255,255,255,.16);
+    }
+    @media (max-width: 900px){
+      .card{ grid-column: span 12; }
+    }
 
-    .card h4 { margin: 0 0 6px; font-size: 16px; }
-    .card p { margin: 0 0 12px; color: var(--muted); font-size: 14px; }
+    .card h3{
+      margin: 0 0 6px;
+      font-size: 15px;
+      letter-spacing: .1px;
+    }
+    .card p{
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 13px;
+    }
 
-    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
-    .tag {
+    .tags{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .tag{
       font-size: 12px;
       color: var(--muted);
-      border: 1px solid var(--line);
+      padding: 4px 10px;
       border-radius: 999px;
-      padding: 3px 10px;
-      background: rgba(255,255,255,.02);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.10);
     }
 
-    .links { display: flex; flex-wrap: wrap; gap: 12px; font-size: 14px; }
+    .links{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 13px;
+    }
+    .links a{
+      color: var(--accent);
+    }
 
-    .two-col {
-      display: grid;
+    .two-col{
+      display:grid;
       grid-template-columns: 1fr 1fr;
       gap: 14px;
     }
-    @media (max-width: 860px) { .two-col { grid-template-columns: 1fr; } }
+    @media (max-width: 900px){
+      .two-col{ grid-template-columns: 1fr; }
+    }
 
-    footer {
-      margin-top: 44px;
+    footer{
+      margin-top: 48px;
       padding-top: 16px;
-      border-top: 1px solid var(--line);
+      border-top: 1px solid rgba(255,255,255,.08);
       color: var(--muted);
-      font-size: 13px;
-      display: flex;
+      font-size: 12px;
+      display:flex;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 10px;
     }
 
-    code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; }
+    /* Small helper */
+    .muted{ color: var(--muted); }
+    .kicker{
+      color: rgba(122,162,255,.9);
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: .6px;
+      text-transform: uppercase;
+    }
   </style>
 </head>
 
 <body>
-  <div class="wrap">
-    <header>
+  <div class="topbar">
+    <div class="topbar-inner">
       <div class="brand">
-        <h1>Joshua Mercado</h1>
-        <p>Software Developer Portfolio</p>
+        <p class="name">Joshua Mercado</p>
+        <p class="sub">Software Developer Portfolio</p>
       </div>
-      <nav>
+
+      <nav aria-label="Primary">
         <a href="#projects">Projects</a>
         <a href="#skills">Skills</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </nav>
-    </header>
-
-    <div class="hero">
-      <h2>I’m learning software development by building real projects from start to finish.</h2>
-      <p>
-        I focus on clean, readable code, solid fundamentals, and practical features like authentication,
-        APIs, and deployment. This portfolio highlights a few polished builds that show how I think,
-        how I solve problems, and how I ship.
-      </p>
-
-      <div class="cta">
-        <a class="btn primary" href="#projects">View Projects</a>
-        <a class="btn" href="https://github.com/jmercado94" target="_blank" rel="noopener">GitHub</a>
-        <!-- Optional: add LinkedIn later -->
-        <!-- <a class="btn" href="https://www.linkedin.com/in/YOURPROFILE/" target="_blank" rel="noopener">LinkedIn</a> -->
-      </div>
     </div>
+  </div>
 
-    <section id="projects">
-      <h3>Projects</h3>
+  <main class="wrap">
+    <section class="hero" aria-label="Hero">
+      <div class="hero-inner">
+        <div>
+          <div class="kicker">Building → Testing → Shipping</div>
+          <h1 class="headline">I build real projects from start to finish.</h1>
+          <p class="lead">
+            I focus on clean, readable code, solid fundamentals, and practical features like authentication,
+            APIs, and deployment. This portfolio highlights a few polished builds that show how I think,
+            how I solve problems, and how I ship.
+          </p>
+
+          <div class="pill-row">
+            <span class="pill good">Open to opportunities</span>
+            <span class="pill">Full-stack foundations</span>
+            <span class="pill">APIs • Testing • Deployments</span>
+          </div>
+
+          <div class="cta">
+            <a class="btn primary" href="#projects">View Projects</a>
+            <a class="btn" href="https://github.com/jmercado94" target="_blank" rel="noopener">GitHub</a>
+            <!-- Add later if you want -->
+            <!-- <a class="btn" href="https://www.linkedin.com/in/YOURPROFILE/" target="_blank" rel="noopener">LinkedIn</a> -->
+            <!-- <a class="btn" href="/resume.pdf">Resume</a> -->
+          </div>
+        </div>
+
+        <aside class="hero-side" aria-label="What this portfolio shows">
+          <h3>What you’ll see here</h3>
+          <ul>
+            <li>Projects with clear scope + clean UI</li>
+            <li>Readable code, sensible structure</li>
+            <li>Practical features (auth, data, APIs)</li>
+            <li>Evidence of shipping (demo/releases)</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section id="projects" aria-label="Projects">
+      <div class="section-title">
+        <h2>Projects</h2>
+        <p>Polished builds with demos and source code.</p>
+      </div>
 
       <div class="grid">
-        <!-- PROJECT CARD TEMPLATE: copy/paste one of these as you add projects -->
-        <div class="card">
-          <h4>Project Name 1</h4>
+        <!-- Copy/paste this card for each project -->
+        <article class="card">
+          <h3>Project Name 1</h3>
           <div class="tags">
-            <span class="tag">Language/Stack</span>
+            <span class="tag">JavaScript</span>
             <span class="tag">Deployed</span>
             <span class="tag">Tests</span>
           </div>
           <p>
-            2–3 sentences describing what the app does, the core features, and what you built end-to-end.
-            Mention the “hard part” you solved (auth, state, data modeling, performance, etc.).
+            2–3 sentences: what it does, key features, and the “hard part” you solved.
+            (Example: auth, state management, data modeling, rate limiting, caching.)
           </p>
           <div class="links">
             <a href="https://github.com/jmercado94" target="_blank" rel="noopener">Code</a>
             <a href="#" target="_blank" rel="noopener">Live Demo</a>
           </div>
-        </div>
+        </article>
 
-        <div class="card">
-          <h4>Project Name 2</h4>
+        <article class="card">
+          <h3>Project Name 2</h3>
           <div class="tags">
-            <span class="tag">Language/Stack</span>
+            <span class="tag">Python</span>
             <span class="tag">API</span>
             <span class="tag">CI</span>
           </div>
           <p>
-            Briefly explain what it does and why it’s useful. Highlight your architecture decisions,
-            any external APIs, and how you deployed it.
+            Describe what it is and why it’s useful. Mention deployment + any external API integrations.
           </p>
           <div class="links">
             <a href="https://github.com/jmercado94" target="_blank" rel="noopener">Code</a>
             <a href="#" target="_blank" rel="noopener">Demo</a>
           </div>
-        </div>
+        </article>
 
-        <div class="card">
-          <h4>Text-Based Game (Coming Soon)</h4>
+        <article class="card">
+          <h3>Text-Based Game (Coming Soon)</h3>
           <div class="tags">
             <span class="tag">Game</span>
             <span class="tag">Audio</span>
@@ -251,67 +438,76 @@
           </div>
           <p>
             A low-graphics, high-vibe text adventure with typewriter text, glitch effects, and sound cues.
-            Includes multiple endings, save/load, and an achievements log.
+            Includes save/load, branching endings, and achievements.
           </p>
           <div class="links">
             <a href="https://github.com/jmercado94" target="_blank" rel="noopener">Code</a>
             <a href="#" target="_blank" rel="noopener">Release</a>
           </div>
-        </div>
+        </article>
 
-        <div class="card">
-          <h4>Project Name 4</h4>
+        <article class="card">
+          <h3>Project Name 4</h3>
           <div class="tags">
-            <span class="tag">Language/Stack</span>
-            <span class="tag">Database</span>
+            <span class="tag">Go</span>
+            <span class="tag">CLI</span>
+            <span class="tag">Tooling</span>
           </div>
           <p>
-            Describe the product and the key features in plain English. Keep it short and “clickable.”
+            A developer tool or automation project that shows practical engineering value and clean UX.
           </p>
           <div class="links">
             <a href="https://github.com/jmercado94" target="_blank" rel="noopener">Code</a>
-            <a href="#" target="_blank" rel="noopener">Demo</a>
+            <a href="#" target="_blank" rel="noopener">Docs</a>
           </div>
-        </div>
+        </article>
       </div>
     </section>
 
-    <section id="skills">
-      <h3>Skills</h3>
+    <section id="skills" aria-label="Skills">
+      <div class="section-title">
+        <h2>Skills</h2>
+        <p>Keep this tight. Let projects do the talking.</p>
+      </div>
+
       <div class="two-col">
         <div class="card">
-          <h4>Core</h4>
-          <p>
-            Git/GitHub · Debugging · Testing basics · REST APIs · Deployment fundamentals
-          </p>
+          <h3>Core</h3>
+          <p class="muted">Git/GitHub · Debugging · REST APIs · Deployment basics · Testing fundamentals</p>
         </div>
         <div class="card">
-          <h4>Learning / Exploring</h4>
-          <p>
-            Add languages/frameworks as you build projects (example: JavaScript, Python, SQL, etc.).
-          </p>
+          <h3>Currently learning</h3>
+          <p class="muted">Add languages and frameworks as you complete projects (e.g., JavaScript, Python, SQL, etc.).</p>
         </div>
       </div>
     </section>
 
-    <section id="about">
-      <h3>About</h3>
+    <section id="about" aria-label="About">
+      <div class="section-title">
+        <h2>About</h2>
+        <p>A short “why” and what roles you’re targeting.</p>
+      </div>
+
       <div class="card">
-        <p>
-          Use this section for 4–6 lines about what you enjoy building and what roles you’re targeting.
-          Keep it simple. If you have a strong reason you’re switching into programming, mention it in one sentence.
+        <p class="muted">
+          Write 4–6 lines about what you like building, your strengths, and the kind of role you’re seeking.
+          Keep it specific and confident, but simple.
         </p>
       </div>
     </section>
 
-    <section id="contact">
-      <h3>Contact</h3>
+    <section id="contact" aria-label="Contact">
+      <div class="section-title">
+        <h2>Contact</h2>
+        <p>Simple and easy to reach you.</p>
+      </div>
+
       <div class="card">
-        <p>
-          Email: <a href="mailto:you@example.com">you@example.com</a><br />
-          GitHub: <a href="https://github.com/jmercado94" target="_blank" rel="noopener">github.com/jmercado94</a><br />
-          <!-- Add LinkedIn when ready -->
-          <!-- LinkedIn: <a href="https://www.linkedin.com/in/YOURPROFILE/" target="_blank" rel="noopener">Your Profile</a> -->
+        <p class="muted" style="margin:0;">
+          GitHub: <a href="https://github.com/jmercado94" target="_blank" rel="noopener">github.com/jmercado94</a><br>
+          Email: <a href="jmercado94@protonmail.com">jmercado94@protonmail.com</a><br>
+          <!-- Add when ready -->
+          <!-- LinkedIn: <a href="https://www.linkedin.com/in/YOURPROFILE/" target="_blank" rel="noopener">Your LinkedIn</a> -->
         </p>
       </div>
     </section>
@@ -320,7 +516,7 @@
       <span>© <span id="year"></span> Joshua Mercado</span>
       <span>Hosted on GitHub Pages</span>
     </footer>
-  </div>
+  </main>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
