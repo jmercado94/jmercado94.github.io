@@ -1,2 +1,13 @@
 # jmercado94.github.io
-I’m learning software development by building real projects from start to finish. I focus on clean, readable code, solid fundamentals, and practical features like authentication, APIs, and deployment. This portfolio highlights a few polished builds that show how I think, how I solve problems, and how I ship.
+
+Website scaffold only. Implementation and page content are intentionally pending.
+
+## Structure
+
+- `index.html` - homepage entry point
+- `pages/` - secondary site pages
+- `assets/css/` - stylesheets
+- `assets/js/` - scripts
+- `assets/images/` - image assets
+- `assets/docs/` - downloadable files like a resume
+- `content/` - project and copy source material
